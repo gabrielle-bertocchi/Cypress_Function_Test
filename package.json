@@ -1,0 +1,11 @@
+{
+  "name": "cypress_function_test",
+  "version": "1.0.0",
+  "description": "This project contains a collection of functional tests for the login functionality of the Swag Labs website(https://www.saucedemo.com/).  The purpose of these tests is to ensure that the login process functions correctly and meets the specified requirements.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "author": "Gabrielle Bertocchi",
+  "license": "MIT"
+}
