@@ -11,5 +11,8 @@
   "devDependencies": {
     "cypress": "^12.13.0",
     "cypress-plugin-tab": "^1.0.5"
+  },
+  "dependencies": {
+    "clipboardy": "^3.0.0"
   }
 }

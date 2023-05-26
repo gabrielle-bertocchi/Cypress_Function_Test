@@ -50,9 +50,9 @@ describe('SL_006', () => {
     const textToCopy = 'MySecretPassword';
 
     cy.visit('https://www.saucedemo.com/')
-    cy.get('.input_error[name="password"]').type(textToCopy)
-
-      
-  });
+    cy.get('.input_error[name="user-name"]').type(textToCopy)
+    cy.get('.input_error[name="user-name"]').type('{selectall}')
+    cy.get('.input_error[name="user-name"]').rightclick().type('{ctrl+c}')
+    cy.get('.input_error[name="password"]').type('{ctrl+v}')
+  })
 })
-
