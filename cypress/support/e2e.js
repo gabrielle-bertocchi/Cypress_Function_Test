@@ -1,4 +1,7 @@
 require('cypress-plugin-tab')
+// cypress/support/index.js
+import './commands';
+
 
 
 // ***********************************************************
