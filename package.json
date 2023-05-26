@@ -9,6 +9,7 @@
   "author": "Gabrielle Bertocchi",
   "license": "MIT",
   "devDependencies": {
-    "cypress": "^12.13.0"
+    "cypress": "^12.13.0",
+    "cypress-plugin-tab": "^1.0.5"
   }
 }
