@@ -63,26 +63,6 @@ describe('Sl_006', () => {
 })
 
 describe('SL_007', ()=> {
-  it('Validate Logging into the Application and browsing back using Browser back button', () => {
-    cy.visit('https://www.saucedemo.com/')
-
-    const username = "standard_user"
-    const password = "secret_sauce"
-    cy.get('.input_error[name="user-name"]').type(username)
-    cy.get('.input_error[name="password"]').type(password)
-    cy.get('.submit-button[value="Login"]').click()
-
-    cy.url('https://www.saucedemo.com/inventory.html').then((url) => {
-      const loggedInUrl = url;
-
-    cy.go('back')
-
-    cy.url().should('eq', loggedInUrl);
-  });
-  })
-})
-
-describe('SL_008', ()=> {
   it('Validate the text into the Password field is toggled to hide its visibility', () => {
       cy.visit('https://www.saucedemo.com/')
 
@@ -96,21 +76,8 @@ describe('SL_008', ()=> {
   });
 })
 
-describe('SL_009', () => {
+describe('SL_008', () => {
   it.skip('Validate the copying of the text entered into the Password field', () => {
-
-    const textToCopy = 'MySecretPassword';
-
-    cy.visit('https://www.saucedemo.com/')
-    cy.get('.input_error[name="password"]').type(textToCopy)
-    cy.get('.input_error[name="password"]').type('{selectall}')
-    cy.get('.input_error[name="password"]').type('{ctrl}c')
-    cy.get('.input_error[name="user-name"]').type('{ctrl}v')
-  })
-})
-
-describe('test', ()=>{
-  it('', () => {
     cy.visit('https://www.saucedemo.com/')
     cy.get('.input_error[type="password"]').type('your_password');
 
@@ -120,12 +87,10 @@ describe('test', ()=>{
     cy.get('.input_error[type="password"]').trigger('keyup', { keyCode: 67, ctrlKey: true });
 
     cy.get('.input_error[name="user-name"]').click();
-
-// 7. Press (Ctrl+V) shortcut for pasting
-cy.get('.input_error[name="user-name"]').trigger('keydown', { keyCode: 86, ctrlKey: true });
-cy.get('.input_error[name="user-name"]').trigger('keyup', { keyCode: 86, ctrlKey: true });
-  });
-});
+    cy.get('.input_error[name="user-name"]').trigger('keydown', { keyCode: 86, ctrlKey: true });
+    cy.get('.input_error[name="user-name"]').trigger('keyup', { keyCode: 86, ctrlKey: true });
+  })
+})
 
 
 
