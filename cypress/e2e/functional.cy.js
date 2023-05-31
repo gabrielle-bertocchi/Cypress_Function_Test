@@ -108,3 +108,24 @@ describe('SL_009', () => {
     cy.get('.input_error[name="user-name"]').type('{ctrl}v')
   })
 })
+
+describe('test', ()=>{
+  it('', () => {
+    cy.visit('https://www.saucedemo.com/')
+    cy.get('.input_error[type="password"]').type('your_password');
+
+    cy.get('.input_error[type="password"]').type('{selectall}');
+
+    cy.get('.input_error[type="password"]').trigger('keydown', { keyCode: 67, ctrlKey: true });
+    cy.get('.input_error[type="password"]').trigger('keyup', { keyCode: 67, ctrlKey: true });
+
+    cy.get('.input_error[name="user-name"]').click();
+
+// 7. Press (Ctrl+V) shortcut for pasting
+cy.get('.input_error[name="user-name"]').trigger('keydown', { keyCode: 86, ctrlKey: true });
+cy.get('.input_error[name="user-name"]').trigger('keyup', { keyCode: 86, ctrlKey: true });
+  });
+});
+
+
+
