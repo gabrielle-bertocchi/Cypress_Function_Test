@@ -77,7 +77,7 @@ describe('SL_007', ()=> {
 })
 
 describe('SL_008', () => {
-  it.skip('Validate the copying of the text entered into the Password field', () => {
+  it('Validate the copying of the text entered into the Password field', () => {
     cy.visit('https://www.saucedemo.com/')
     cy.get('.input_error[type="password"]').type('your_password');
 
