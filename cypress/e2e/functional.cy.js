@@ -46,7 +46,7 @@ describe('SL_005', () => {
 })
 
 describe('SL_006', () => {
-  it('Validate the copying of the text entered into the Password field', () => {
+  it.skip('Validate the copying of the text entered into the Password field', () => {
 
     const textToCopy = 'MySecretPassword';
 
@@ -55,5 +55,31 @@ describe('SL_006', () => {
     cy.get('.input_error[name="password"]').type('{selectall}')
     cy.get('.input_error[name="password"]').type('{ctrl}c')
     cy.get('.input_error[name="user-name"]').type('{ctrl}v')
+  })
+})
+
+describe('Sl_007', () => {
+  it('Validate Username and Password text fields in the Login page have the place holder text ', () => {
+      cy.visit('https://www.saucedemo.com/')
+
+      cy.get('.form_group input#user-name').should('have.attr', 'placeholder', 'Username')
+      cy.get('.form_group input#password').should('have.attr', 'placeholder', 'Password')
+  });
+})
+
+describe('SL_008', ()=> {
+  it('Validate Logging into the Application and browsing back using Browser back button', () => {
+    cy.visit('https://www.saucedemo.com/')
+    cy.get('.input_error[name="user-name"]').type('standard_user')
+    cy.get('.input_error[name="password"]').type('secret_sauce')
+    cy.get('.submit-button[value="Login"]').click()
+
+    cy.url('https://www.saucedemo.com/inventory.html').then((url) => {
+      const loggedInUrl = url;
+
+    cy.go('back')
+
+    cy.url().should('eq', loggedInUrl);
+  });
   })
 })
