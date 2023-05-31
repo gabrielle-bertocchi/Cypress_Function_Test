@@ -9,8 +9,12 @@ describe('SL_001', () => {
 describe('SL_002', () => {
   it('Valid logging', () => {
     cy.visit('https://www.saucedemo.com/')
-    cy.get('.input_error[name="user-name"]').type('standard_user')
-    cy.get('.input_error[name="password"]').type('secret_sauce')
+
+    const username = "standard_user"
+    const password = "secret_sauce"
+
+    cy.get('.input_error[name="user-name"]').type(username)
+    cy.get('.input_error[name="password"]').type(password)
     cy.get('.submit-button[value="Login"]').click()
   });
 })
@@ -40,25 +44,16 @@ describe('SL_004', () => {
 describe('SL_005', () => {
   it('should validate login using keyboard keys', () => {
     cy.visit('https://www.saucedemo.com/')
-    cy.get('.input_error[name="user-name"]').type('standard_user').tab()
-    cy.get('.input_error[name="password"]').type('secret_sauce').tab().type('{enter}')
+
+    const username = "standard_user"
+    const password = "secret_sauce"
+
+    cy.get('.input_error[name="user-name"]').type(username).tab()
+    cy.get('.input_error[name="password"]').type(password).tab().type('{enter}')
   });
 })
 
-describe('SL_006', () => {
-  it.skip('Validate the copying of the text entered into the Password field', () => {
-
-    const textToCopy = 'MySecretPassword';
-
-    cy.visit('https://www.saucedemo.com/')
-    cy.get('.input_error[name="password"]').type(textToCopy)
-    cy.get('.input_error[name="password"]').type('{selectall}')
-    cy.get('.input_error[name="password"]').type('{ctrl}c')
-    cy.get('.input_error[name="user-name"]').type('{ctrl}v')
-  })
-})
-
-describe('Sl_007', () => {
+describe('Sl_006', () => {
   it('Validate Username and Password text fields in the Login page have the place holder text ', () => {
       cy.visit('https://www.saucedemo.com/')
 
@@ -67,11 +62,14 @@ describe('Sl_007', () => {
   });
 })
 
-describe('SL_008', ()=> {
+describe('SL_007', ()=> {
   it('Validate Logging into the Application and browsing back using Browser back button', () => {
     cy.visit('https://www.saucedemo.com/')
-    cy.get('.input_error[name="user-name"]').type('standard_user')
-    cy.get('.input_error[name="password"]').type('secret_sauce')
+
+    const username = "standard_user"
+    const password = "secret_sauce"
+    cy.get('.input_error[name="user-name"]').type(username)
+    cy.get('.input_error[name="password"]').type(password)
     cy.get('.submit-button[value="Login"]').click()
 
     cy.url('https://www.saucedemo.com/inventory.html').then((url) => {
@@ -81,5 +79,32 @@ describe('SL_008', ()=> {
 
     cy.url().should('eq', loggedInUrl);
   });
+  })
+})
+
+describe('SL_008', ()=> {
+  it('Validate the text into the Password field is toggled to hide its visibility', () => {
+      cy.visit('https://www.saucedemo.com/')
+
+      const password = 'secret_sauce';
+
+      cy.get('input[placeholder="Password"]').type(password);
+
+    cy.get('input[placeholder="Password"]').should('have.attr', 'type', 'password');
+
+    cy.get('input[placeholder="Password"]').blur();
+  });
+})
+
+describe('SL_009', () => {
+  it.skip('Validate the copying of the text entered into the Password field', () => {
+
+    const textToCopy = 'MySecretPassword';
+
+    cy.visit('https://www.saucedemo.com/')
+    cy.get('.input_error[name="password"]').type(textToCopy)
+    cy.get('.input_error[name="password"]').type('{selectall}')
+    cy.get('.input_error[name="password"]').type('{ctrl}c')
+    cy.get('.input_error[name="user-name"]').type('{ctrl}v')
   })
 })
